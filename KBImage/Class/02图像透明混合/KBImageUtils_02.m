@@ -48,9 +48,9 @@
     UIImage *img_1 = [[self class]drawImageWithData:destBitmapData width:pixelsWide_02 height:pixelsHigh_02 bitsPerComponent_t:bitsPerComponent_t_02];
 
     
-//    free(destBitmapData);
-//    free(bitmapData_02);
-//    free(bitmapData);
+    free(destBitmapData);
+    free(bitmapData_02);
+    free(bitmapData);
 //    bitmapData_02 = NULL;
 //    bitmapData = NULL;
     
@@ -75,7 +75,7 @@
 }
 
 
-+(void)loadbytes:(uint8_t *)bitmapData image:(UIImage *)image ptrWidth:(size_t *)ptrWidth ptrHeight:(size_t *)ptrHeight bitsPerComponent_t:(size_t *)bitsPerComponent_t{
++(void)loadbytes:(uint8_t **)bitmapData image:(UIImage *)image ptrWidth:(size_t *)ptrWidth ptrHeight:(size_t *)ptrHeight bitsPerComponent_t:(size_t *)bitsPerComponent_t{
     CGImageRef cgimg = image.CGImage;
     
     CGContextRef bitmapContext = NULL;
