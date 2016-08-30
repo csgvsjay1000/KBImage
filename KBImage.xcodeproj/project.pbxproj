@@ -22,6 +22,8 @@
 		4C6A96671D6D4E5A009397F3 /* 1234.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A96661D6D4E5A009397F3 /* 1234.jpg */; };
 		4C6A966B1D6D6854009397F3 /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A966A1D6D6854009397F3 /* GLProgram.m */; };
 		4CC507D61D6D823100BF113C /* 333.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CC507D51D6D823100BF113C /* 333.jpg */; };
+		B24AF4FD1D713CCF00DB9E07 /* KBImageUtils_03.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AF4FC1D713CCF00DB9E07 /* KBImageUtils_03.m */; };
+		B24AF5011D7149B500DB9E07 /* KBImageUtils_04.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AF5001D7149B500DB9E07 /* KBImageUtils_04.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,10 @@
 		4C6A96691D6D6854009397F3 /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
 		4C6A966A1D6D6854009397F3 /* GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLProgram.m; sourceTree = "<group>"; };
 		4CC507D51D6D823100BF113C /* 333.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 333.jpg; sourceTree = "<group>"; };
+		B24AF4FB1D713CCF00DB9E07 /* KBImageUtils_03.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_03.h; sourceTree = "<group>"; };
+		B24AF4FC1D713CCF00DB9E07 /* KBImageUtils_03.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageUtils_03.m; sourceTree = "<group>"; };
+		B24AF4FF1D7149B500DB9E07 /* KBImageUtils_04.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_04.h; sourceTree = "<group>"; };
+		B24AF5001D7149B500DB9E07 /* KBImageUtils_04.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageUtils_04.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,8 @@
 		4C61DA641D6ED0D800F856EE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				B24AF4FE1D71496500DB9E07 /* 04图像处理之颜色梯度变化 */,
+				B24AF4FA1D713C9E00DB9E07 /* 03图像处理之噪声之美 */,
 				4C61DA691D6EDE9300F856EE /* 02图像透明混合 */,
 				4C61DA651D6ED0D800F856EE /* 01图像缩放之临近插值 */,
 			);
@@ -197,6 +205,24 @@
 				4C6A966A1D6D6854009397F3 /* GLProgram.m */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		B24AF4FA1D713C9E00DB9E07 /* 03图像处理之噪声之美 */ = {
+			isa = PBXGroup;
+			children = (
+				B24AF4FB1D713CCF00DB9E07 /* KBImageUtils_03.h */,
+				B24AF4FC1D713CCF00DB9E07 /* KBImageUtils_03.m */,
+			);
+			path = "03图像处理之噪声之美";
+			sourceTree = "<group>";
+		};
+		B24AF4FE1D71496500DB9E07 /* 04图像处理之颜色梯度变化 */ = {
+			isa = PBXGroup;
+			children = (
+				B24AF4FF1D7149B500DB9E07 /* KBImageUtils_04.h */,
+				B24AF5001D7149B500DB9E07 /* KBImageUtils_04.m */,
+			);
+			path = "04图像处理之颜色梯度变化";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,6 +359,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B24AF5011D7149B500DB9E07 /* KBImageUtils_04.m in Sources */,
+				B24AF4FD1D713CCF00DB9E07 /* KBImageUtils_03.m in Sources */,
 				4C6A963B1D6D3B42009397F3 /* ViewController.m in Sources */,
 				4C6A966B1D6D6854009397F3 /* GLProgram.m in Sources */,
 				4C6A96381D6D3B42009397F3 /* AppDelegate.m in Sources */,

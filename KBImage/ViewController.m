@@ -8,7 +8,11 @@
 
 #import "ViewController.h"
 #import "GLProgram.h"
-#import "KBImageUtils_02.h"
+//#import "KBImageUtils_01.h"
+//#import "KBImageUtils_02.h"
+//#import "KBImageUtils_03.h"
+#import "KBImageUtils_04.h"
+
 
 @interface ViewController ()
 
@@ -31,7 +35,7 @@
 
     
     float width,height;
-    self.imageView.image = [KBImageUtils_02 reDrawImage:&width ptrHeight:&height];
+    self.imageView.image = [KBImageUtils_04 reDrawImage:&width ptrHeight:&height];
     self.imageView.frame = CGRectMake(0, 0, width, height);
     self.imageView.center = self.view.center;
 }
