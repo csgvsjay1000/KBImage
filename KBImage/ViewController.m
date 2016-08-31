@@ -11,12 +11,15 @@
 //#import "KBImageUtils_01.h"
 //#import "KBImageUtils_02.h"
 //#import "KBImageUtils_03.h"
-#import "KBImageUtils_04.h"
+//#import "KBImageUtils_04.h"
+#import "KBImageUtils_08.h"
 
 
 @interface ViewController ()
 
 @property(nonatomic,strong)UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
@@ -26,6 +29,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.slider.maximumValue = 2;
+    self.slider.minimumValue = 0;
+    self.slider.value = 1;
+    self.label.text = [NSString stringWithFormat:@"%.2f",self.slider.value];
     [self.view addSubview:self.imageView];
     [self reDrawImage];
 }
@@ -35,9 +42,18 @@
 
     
     float width,height;
-    self.imageView.image = [KBImageUtils_04 reDrawImage:&width ptrHeight:&height];
+    self.imageView.image = [KBImageUtils_08 reGPUImageDrawImage:&width ptrHeight:&height value:self.slider.value];
     self.imageView.frame = CGRectMake(0, 0, width, height);
     self.imageView.center = self.view.center;
+}
+- (IBAction)sliderChange:(id)sender {
+    
+    self.label.text = [NSString stringWithFormat:@"%.2f",self.slider.value];
+    float width,height;
+    self.imageView.image = [KBImageUtils_08 reGPUImageDrawImage:&width ptrHeight:&height value:self.slider.value];
+    self.imageView.frame = CGRectMake(0, 0, width, height);
+    self.imageView.center = self.view.center;
+    
 }
 
 void MyCGBitmapContextReleaseDataCallback(void * __nullable releaseInfo,
