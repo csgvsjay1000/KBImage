@@ -12,7 +12,7 @@
 //#import "KBImageUtils_02.h"
 //#import "KBImageUtils_03.h"
 //#import "KBImageUtils_04.h"
-#import "KBImageUtils_08.h"
+#import "KBImageUtils_11.h"
 
 
 @interface ViewController ()
@@ -29,7 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.slider.maximumValue = 2;
+    self.slider.maximumValue = 1;
     self.slider.minimumValue = 0;
     self.slider.value = 1;
     self.label.text = [NSString stringWithFormat:@"%.2f",self.slider.value];
@@ -42,7 +42,7 @@
 
     
     float width,height;
-    self.imageView.image = [KBImageUtils_08 reGPUImageDrawImage:&width ptrHeight:&height value:self.slider.value];
+    self.imageView.image = [KBImageUtils_11 reDrawImage:&width ptrHeight:&height value:self.slider.value];
     self.imageView.frame = CGRectMake(0, 0, width, height);
     self.imageView.center = self.view.center;
 }
@@ -50,7 +50,7 @@
     
     self.label.text = [NSString stringWithFormat:@"%.2f",self.slider.value];
     float width,height;
-    self.imageView.image = [KBImageUtils_08 reGPUImageDrawImage:&width ptrHeight:&height value:self.slider.value];
+    self.imageView.image = [KBImageUtils_11 reDrawImage:&width ptrHeight:&height value:self.slider.value];
     self.imageView.frame = CGRectMake(0, 0, width, height);
     self.imageView.center = self.view.center;
     

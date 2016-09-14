@@ -28,6 +28,7 @@
 		4CC470511D76D8C50026519B /* 03.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4CC470501D76D8C50026519B /* 03.jpeg */; };
 		4CC470551D76D9410026519B /* KBImageUtils_08.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC470541D76D9410026519B /* KBImageUtils_08.m */; };
 		4CC507D61D6D823100BF113C /* 333.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CC507D51D6D823100BF113C /* 333.jpg */; };
+		8D1B81B41D88EFB700019861 /* KBImageUtils_11.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B81B31D88EFB700019861 /* KBImageUtils_11.m */; };
 		B24AF4FD1D713CCF00DB9E07 /* KBImageUtils_03.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AF4FC1D713CCF00DB9E07 /* KBImageUtils_03.m */; };
 		B24AF5011D7149B500DB9E07 /* KBImageUtils_04.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AF5001D7149B500DB9E07 /* KBImageUtils_04.m */; };
 /* End PBXBuildFile section */
@@ -259,6 +260,8 @@
 		4CC470531D76D9410026519B /* KBImageUtils_08.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_08.h; sourceTree = "<group>"; };
 		4CC470541D76D9410026519B /* KBImageUtils_08.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageUtils_08.m; sourceTree = "<group>"; };
 		4CC507D51D6D823100BF113C /* 333.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 333.jpg; sourceTree = "<group>"; };
+		8D1B81B21D88EFB700019861 /* KBImageUtils_11.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_11.h; sourceTree = "<group>"; };
+		8D1B81B31D88EFB700019861 /* KBImageUtils_11.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageUtils_11.m; sourceTree = "<group>"; };
 		B24AF4FB1D713CCF00DB9E07 /* KBImageUtils_03.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_03.h; sourceTree = "<group>"; };
 		B24AF4FC1D713CCF00DB9E07 /* KBImageUtils_03.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageUtils_03.m; sourceTree = "<group>"; };
 		B24AF4FF1D7149B500DB9E07 /* KBImageUtils_04.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_04.h; sourceTree = "<group>"; };
@@ -294,6 +297,7 @@
 		4C61DA641D6ED0D800F856EE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				8D1B81B11D88EFB700019861 /* 11褐色 */,
 				4CC470521D76D9410026519B /* 08饱和度 */,
 				4CC4704C1D76C8AF0026519B /* 07对比度 */,
 				4CC470481D76BF0D0026519B /* 06曝光度 */,
@@ -645,6 +649,15 @@
 			path = "08饱和度";
 			sourceTree = "<group>";
 		};
+		8D1B81B11D88EFB700019861 /* 11褐色 */ = {
+			isa = PBXGroup;
+			children = (
+				8D1B81B21D88EFB700019861 /* KBImageUtils_11.h */,
+				8D1B81B31D88EFB700019861 /* KBImageUtils_11.m */,
+			);
+			path = "11褐色";
+			sourceTree = "<group>";
+		};
 		B24AF4FA1D713C9E00DB9E07 /* 03图像处理之噪声之美 */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,6 +819,7 @@
 				4C6A966B1D6D6854009397F3 /* GLProgram.m in Sources */,
 				4C6A96381D6D3B42009397F3 /* AppDelegate.m in Sources */,
 				4C6A96351D6D3B42009397F3 /* main.m in Sources */,
+				8D1B81B41D88EFB700019861 /* KBImageUtils_11.m in Sources */,
 				4CC4704B1D76BF300026519B /* KBImageUtils_06.m in Sources */,
 				4CC4704F1D76C8AF0026519B /* KBImageUtils_07.m in Sources */,
 				4C61DA701D6EDEBE00F856EE /* KBImageUtils_02.m in Sources */,

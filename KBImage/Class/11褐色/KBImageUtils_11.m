@@ -6,11 +6,12 @@
 //  Copyright © 2016 Gan Tian. All rights reserved.
 //
 
-#import "KBImageUtils_07.h"
+#import "KBImageUtils_11.h"
 #import "KBImageUtils_02.h"
 #import "GPUImage.h"
+#import <GLKit/GLKit.h>
 
-@implementation KBImageUtils_07
+@implementation KBImageUtils_11
 
 static inline int rgb(float value){
     int r = value;
@@ -36,7 +37,20 @@ static inline int rgb(float value){
     
     [KBImageUtils_02 loadbytes:&bitmapData image:image ptrWidth:&pixelsWide ptrHeight:&pixelsHigh bitsPerComponent_t:&bitsPerComponent_t];
     
-    float contrast = value;  //曝光度  -10至10 ,0为正常
+//    GLKMatrix4 colorMatrix = GLKMatrix4Make(1, 0, 0, 0,
+//                                            0, 1, 0, 0,
+//                                            0, 0, 1, 0,
+//                                            0, 0, 0, 1);  //正常颜色矩阵
+    GLKMatrix4 colorMatrix = GLKMatrix4Make(0.3588, 0.7044, 0.1368, 0,
+                                            0.2990, 0.5870, 0.1140, 0,
+                                            0.2392, 0.4696, 0.0912, 0,
+                                            0, 0, 0, 1);  //正常颜色矩阵
+    
+    
+    CGFloat intensity = value;  //强度
+    
+    
+//    float contrast = value;  //曝光度  -10至10 ,0为正常
     int nindex = 0;  //每个像素点下标(包括RGBA)每个下标又包含四个值
     for (int j = 0; j < pixelsHigh; j++)
     {
@@ -44,29 +58,13 @@ static inline int rgb(float value){
         {
             nindex=(j*pixelsWide+i);
             
-            int r = (bitmapData[nindex*4+0]-124)*contrast+124;
-            if (r>255) {
-                r = 255;
-            }else if (r<0){
-                r = 0;
-            }
-            int g = (bitmapData[nindex*4+1]-124)*contrast+124;
-            if (g>255) {
-                g = 255;
-            }else if (g<0){
-                g = 0;
-            }
-            int b = (bitmapData[nindex*4+2]-124)*contrast+124;
-            if (b>255) {
-                b = 255;
-            }else if (b<0){
-                b = 0;
-            }
+            GLKVector4 textureColor = GLKVector4Make(bitmapData[nindex*4+0], bitmapData[nindex*4+1], bitmapData[nindex*4+2], bitmapData[nindex*4+3]);
+            GLKVector4 outColor = GLKMatrix4MultiplyVector4(colorMatrix, textureColor);
             
-            bitmapData[nindex*4+0] = r;
-            bitmapData[nindex*4+1] = g;
-            bitmapData[nindex*4+2] = b;
-            bitmapData[nindex*4+3] = 255;
+            bitmapData[nindex*4+0] = rgb((intensity*outColor.r)+(1-intensity)*textureColor.x);
+            bitmapData[nindex*4+1] = rgb((intensity*outColor.g)+(1-intensity)*textureColor.y);
+            bitmapData[nindex*4+2] = rgb((intensity*outColor.b)+(1-intensity)*textureColor.z);
+            bitmapData[nindex*4+3] = rgb((intensity*outColor.a)+(1-intensity)*textureColor.w);
         }
     }
     
@@ -82,10 +80,10 @@ static inline int rgb(float value){
 }
 
 +(UIImage *)reGPUImageDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
-    UIImage *inputImage = [UIImage imageNamed:@"01.jpg"];
-    GPUImageContrastFilter *disFilter = [[GPUImageContrastFilter alloc] init];
+    UIImage *inputImage = [UIImage imageNamed:@"03.jpeg"];
+    GPUImageSepiaFilter *disFilter = [[GPUImageSepiaFilter alloc] init];
     //设置要渲染的区域
-    disFilter.contrast = value;
+//    disFilter.saturation = value;
     [disFilter forceProcessingAtSize:inputImage.size];
     [disFilter useNextFrameForImageCapture];
     
