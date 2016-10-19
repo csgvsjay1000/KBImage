@@ -9,11 +9,13 @@
 #import "KBImageUtils_08.h"
 #import "KBImageUtils_02.h"
 #import "GPUImage.h"
+#import "KBImageUtils.h"
+#import <GLKit/GLKit.h>
 
 @implementation KBImageUtils_08
 
 
-+(UIImage *)reDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
+-(UIImage *)reDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
     uint8_t *bitmapData;
     
     size_t pixelsWide,pixelsWide_02;
@@ -29,34 +31,28 @@
     
     float contrast = value;  //曝光度  -10至10 ,0为正常
     int nindex = 0;  //每个像素点下标(包括RGBA)每个下标又包含四个值
+    
+    GLKVector3 luminanceWeighting = GLKVector3Make(0.2125, 0.7154, 0.0721); // 亮度
+    
     for (int j = 0; j < pixelsHigh; j++)
     {
         for(int i = 0; i < pixelsWide; i++)
         {
             nindex=(j*pixelsWide+i);
             
-            int r = (bitmapData[nindex*4+0]-124)*contrast+124;
-            if (r>255) {
-                r = 255;
-            }else if (r<0){
-                r = 0;
-            }
-            int g = (bitmapData[nindex*4+1]-124)*contrast+124;
-            if (g>255) {
-                g = 255;
-            }else if (g<0){
-                g = 0;
-            }
-            int b = (bitmapData[nindex*4+2]-124)*contrast+124;
-            if (b>255) {
-                b = 255;
-            }else if (b<0){
-                b = 0;
-            }
+            int r = [KBImageUtils rgb:bitmapData[nindex*4+0]];
+            int g = [KBImageUtils rgb:bitmapData[nindex*4+1]];
+            int b = [KBImageUtils rgb:bitmapData[nindex*4+2]];
             
-            bitmapData[nindex*4+0] = r;
-            bitmapData[nindex*4+1] = g;
-            bitmapData[nindex*4+2] = b;
+            float luminance = GLKVector3DotProduct(GLKVector3Make(r, g, b), luminanceWeighting);
+            
+            int nr = [KBImageUtils rgb:(1.0-contrast)*luminance+(contrast)*r];
+            int ng = [KBImageUtils rgb:(1.0-contrast)*luminance+(contrast)*g];
+            int nb = [KBImageUtils rgb:(1.0-contrast)*luminance+(contrast)*b];
+
+            bitmapData[nindex*4+0] = nr;
+            bitmapData[nindex*4+1] = ng;
+            bitmapData[nindex*4+2] = nb;
             bitmapData[nindex*4+3] = 255;
         }
     }
@@ -72,7 +68,7 @@
     
 }
 
-+(UIImage *)reGPUImageDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
+-(UIImage *)reGPUImageDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
     UIImage *inputImage = [UIImage imageNamed:@"03.jpeg"];
     GPUImageSaturationFilter *disFilter = [[GPUImageSaturationFilter alloc] init];
     //设置要渲染的区域

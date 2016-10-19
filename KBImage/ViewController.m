@@ -12,12 +12,16 @@
 //#import "KBImageUtils_02.h"
 //#import "KBImageUtils_03.h"
 //#import "KBImageUtils_04.h"
-#import "KBImageUtils_11.h"
+#import "KBImageUtils_08.h"
 
 
 @interface ViewController ()
 
 @property(nonatomic,strong)UIImageView *imageView;
+@property(nonatomic,strong)UIImageView *gpuImageView;
+
+@property(nonatomic,strong)id<KBImageDelegate> imageRender;
+
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
@@ -29,11 +33,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.slider.maximumValue = 1;
+    self.slider.maximumValue = 2;
     self.slider.minimumValue = 0;
     self.slider.value = 1;
     self.label.text = [NSString stringWithFormat:@"%.2f",self.slider.value];
     [self.view addSubview:self.imageView];
+    [self.view addSubview:self.gpuImageView];
+
     [self reDrawImage];
 }
 
@@ -42,17 +48,30 @@
 
     
     float width,height;
-    self.imageView.image = [KBImageUtils_11 reDrawImage:&width ptrHeight:&height value:self.slider.value];
-    self.imageView.frame = CGRectMake(0, 0, width, height);
-    self.imageView.center = self.view.center;
+    self.imageView.image = [self.imageRender reDrawImage:&width ptrHeight:&height value:self.slider.value];
+    
+    CGFloat selfWidth = self.view.frame.size.width;
+    
+    self.imageView.frame = CGRectMake((selfWidth-width)/2.0, 20, width, height);
+    
+    self.gpuImageView.image = [self.imageRender reGPUImageDrawImage:&width ptrHeight:&height value:self.slider.value];
+    self.gpuImageView.frame = CGRectMake((selfWidth-width)/2.0, 250, width, height);
+    
 }
 - (IBAction)sliderChange:(id)sender {
     
     self.label.text = [NSString stringWithFormat:@"%.2f",self.slider.value];
     float width,height;
-    self.imageView.image = [KBImageUtils_11 reDrawImage:&width ptrHeight:&height value:self.slider.value];
-    self.imageView.frame = CGRectMake(0, 0, width, height);
-    self.imageView.center = self.view.center;
+    self.imageView.image = [self.imageRender reDrawImage:&width ptrHeight:&height value:self.slider.value];
+    
+    CGFloat selfWidth = self.view.frame.size.width;
+    
+    self.imageView.frame = CGRectMake((selfWidth-width)/2.0, 20, width, height);
+    
+    
+    self.gpuImageView.image = [self.imageRender reGPUImageDrawImage:&width ptrHeight:&height value:self.slider.value];
+    self.gpuImageView.frame = CGRectMake((selfWidth-width)/2.0, 250, width, height);
+//    self.gpuImageView.center = self.view.center;
     
 }
 
@@ -62,10 +81,6 @@ void MyCGBitmapContextReleaseDataCallback(void * __nullable releaseInfo,
     NSLog(@"MyCGBitmapContextReleaseDataCallback");
     
 }
-
-//-(UIInterfaceOrientationMask)supportedInterfaceOrientations{
-//    
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -77,6 +92,20 @@ void MyCGBitmapContextReleaseDataCallback(void * __nullable releaseInfo,
         _imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     }
     return _imageView;
+}
+
+-(UIImageView *)gpuImageView{
+    if (_gpuImageView == nil) {
+        _gpuImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    }
+    return _gpuImageView;
+}
+
+-(id<KBImageDelegate>)imageRender{
+    if (_imageRender == nil) {
+        _imageRender = [[KBImageUtils_08 alloc] init];
+    }
+    return _imageRender;
 }
 
 @end

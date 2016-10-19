@@ -29,6 +29,7 @@
 		4CC470551D76D9410026519B /* KBImageUtils_08.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC470541D76D9410026519B /* KBImageUtils_08.m */; };
 		4CC507D61D6D823100BF113C /* 333.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4CC507D51D6D823100BF113C /* 333.jpg */; };
 		8D1B81B41D88EFB700019861 /* KBImageUtils_11.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B81B31D88EFB700019861 /* KBImageUtils_11.m */; };
+		8D93B7BC1DB77DED0030C37E /* KBImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D93B7BB1DB77DED0030C37E /* KBImageUtils.m */; };
 		B24AF4FD1D713CCF00DB9E07 /* KBImageUtils_03.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AF4FC1D713CCF00DB9E07 /* KBImageUtils_03.m */; };
 		B24AF5011D7149B500DB9E07 /* KBImageUtils_04.m in Sources */ = {isa = PBXBuildFile; fileRef = B24AF5001D7149B500DB9E07 /* KBImageUtils_04.m */; };
 /* End PBXBuildFile section */
@@ -262,6 +263,9 @@
 		4CC507D51D6D823100BF113C /* 333.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 333.jpg; sourceTree = "<group>"; };
 		8D1B81B21D88EFB700019861 /* KBImageUtils_11.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_11.h; sourceTree = "<group>"; };
 		8D1B81B31D88EFB700019861 /* KBImageUtils_11.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageUtils_11.m; sourceTree = "<group>"; };
+		8D93B7B61DB779BA0030C37E /* KBImageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageDelegate.h; sourceTree = "<group>"; };
+		8D93B7BA1DB77DED0030C37E /* KBImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils.h; sourceTree = "<group>"; };
+		8D93B7BB1DB77DED0030C37E /* KBImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageUtils.m; sourceTree = "<group>"; };
 		B24AF4FB1D713CCF00DB9E07 /* KBImageUtils_03.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_03.h; sourceTree = "<group>"; };
 		B24AF4FC1D713CCF00DB9E07 /* KBImageUtils_03.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBImageUtils_03.m; sourceTree = "<group>"; };
 		B24AF4FF1D7149B500DB9E07 /* KBImageUtils_04.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBImageUtils_04.h; sourceTree = "<group>"; };
@@ -403,6 +407,9 @@
 			children = (
 				4C6A96691D6D6854009397F3 /* GLProgram.h */,
 				4C6A966A1D6D6854009397F3 /* GLProgram.m */,
+				8D93B7B61DB779BA0030C37E /* KBImageDelegate.h */,
+				8D93B7BA1DB77DED0030C37E /* KBImageUtils.h */,
+				8D93B7BB1DB77DED0030C37E /* KBImageUtils.m */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -811,6 +818,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D93B7BC1DB77DED0030C37E /* KBImageUtils.m in Sources */,
 				B24AF5011D7149B500DB9E07 /* KBImageUtils_04.m in Sources */,
 				4CC470471D76A41B0026519B /* KBImageUtils_05.m in Sources */,
 				B24AF4FD1D713CCF00DB9E07 /* KBImageUtils_03.m in Sources */,

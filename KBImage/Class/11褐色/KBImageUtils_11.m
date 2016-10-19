@@ -10,20 +10,12 @@
 #import "KBImageUtils_02.h"
 #import "GPUImage.h"
 #import <GLKit/GLKit.h>
+#import "KBImageUtils.h"
 
 @implementation KBImageUtils_11
 
-static inline int rgb(float value){
-    int r = value;
-    if (r>255) {
-        r = 255;
-    }else if (r<0){
-        r = 0;
-    }
-    return r;
-}
 
-+(UIImage *)reDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
+-(UIImage *)reDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
     uint8_t *bitmapData;
     
     size_t pixelsWide,pixelsWide_02;
@@ -61,10 +53,10 @@ static inline int rgb(float value){
             GLKVector4 textureColor = GLKVector4Make(bitmapData[nindex*4+0], bitmapData[nindex*4+1], bitmapData[nindex*4+2], bitmapData[nindex*4+3]);
             GLKVector4 outColor = GLKMatrix4MultiplyVector4(colorMatrix, textureColor);
             
-            bitmapData[nindex*4+0] = rgb((intensity*outColor.r)+(1-intensity)*textureColor.x);
-            bitmapData[nindex*4+1] = rgb((intensity*outColor.g)+(1-intensity)*textureColor.y);
-            bitmapData[nindex*4+2] = rgb((intensity*outColor.b)+(1-intensity)*textureColor.z);
-            bitmapData[nindex*4+3] = rgb((intensity*outColor.a)+(1-intensity)*textureColor.w);
+            bitmapData[nindex*4+0] =[KBImageUtils rgb:((intensity*outColor.r)+(1-intensity)*textureColor.x)];
+            bitmapData[nindex*4+1] = [KBImageUtils rgb:((intensity*outColor.g)+(1-intensity)*textureColor.y)];
+            bitmapData[nindex*4+2] = [KBImageUtils rgb:((intensity*outColor.b)+(1-intensity)*textureColor.z)];
+            bitmapData[nindex*4+3] = [KBImageUtils rgb:((intensity*outColor.a)+(1-intensity)*textureColor.w)];
         }
     }
     
@@ -79,7 +71,7 @@ static inline int rgb(float value){
     
 }
 
-+(UIImage *)reGPUImageDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
+-(UIImage *)reGPUImageDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
     UIImage *inputImage = [UIImage imageNamed:@"03.jpeg"];
     GPUImageSepiaFilter *disFilter = [[GPUImageSepiaFilter alloc] init];
     //设置要渲染的区域
