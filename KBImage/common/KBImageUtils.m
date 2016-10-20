@@ -11,7 +11,7 @@
 @implementation KBImageUtils
 
 //
-+(int)rgb:(float) value{
++(int)rgb:(int) value{
     int r = value;
     if (r>255) {
         r = 255;

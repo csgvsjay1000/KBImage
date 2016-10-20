@@ -12,7 +12,8 @@
 //#import "KBImageUtils_02.h"
 //#import "KBImageUtils_03.h"
 //#import "KBImageUtils_04.h"
-#import "KBImageUtils_08.h"
+//#import "KBImageUtils_08.h"
+#import "KBImageUtils_11.h"
 
 
 @interface ViewController ()
@@ -33,7 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.slider.maximumValue = 2;
+    self.slider.maximumValue = 10;
     self.slider.minimumValue = 0;
     self.slider.value = 1;
     self.label.text = [NSString stringWithFormat:@"%.2f",self.slider.value];
@@ -103,7 +104,7 @@ void MyCGBitmapContextReleaseDataCallback(void * __nullable releaseInfo,
 
 -(id<KBImageDelegate>)imageRender{
     if (_imageRender == nil) {
-        _imageRender = [[KBImageUtils_08 alloc] init];
+        _imageRender = [[KBImageUtils_11 alloc] init];
     }
     return _imageRender;
 }

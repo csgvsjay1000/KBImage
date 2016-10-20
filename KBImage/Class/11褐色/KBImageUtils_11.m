@@ -36,27 +36,36 @@
     GLKMatrix4 colorMatrix = GLKMatrix4Make(0.3588, 0.7044, 0.1368, 0,
                                             0.2990, 0.5870, 0.1140, 0,
                                             0.2392, 0.4696, 0.0912, 0,
-                                            0, 0, 0, 1);  //正常颜色矩阵
+                                            0.0, 0.0, 0.0, 1.0);  //正常颜色矩阵
     
     
-    CGFloat intensity = value;  //强度
+//    CGFloat intensity = value;  //强度
     
     
-//    float contrast = value;  //曝光度  -10至10 ,0为正常
+    float contrast = value;  //曝光度  -10至10 ,0为正常
     int nindex = 0;  //每个像素点下标(包括RGBA)每个下标又包含四个值
     for (int j = 0; j < pixelsHigh; j++)
     {
         for(int i = 0; i < pixelsWide; i++)
         {
             nindex=(j*pixelsWide+i);
+//            GLKVector4 outColor = GLKMatrix4MultiplyVector4(colorMatrix, textureColor);
             
-            GLKVector4 textureColor = GLKVector4Make(bitmapData[nindex*4+0], bitmapData[nindex*4+1], bitmapData[nindex*4+2], bitmapData[nindex*4+3]);
-            GLKVector4 outColor = GLKMatrix4MultiplyVector4(colorMatrix, textureColor);
+            int r = [KBImageUtils rgb:bitmapData[nindex*4+0]];
+            int g = [KBImageUtils rgb:bitmapData[nindex*4+1]];
+            int b = [KBImageUtils rgb:bitmapData[nindex*4+2]];
             
-            bitmapData[nindex*4+0] =[KBImageUtils rgb:((intensity*outColor.r)+(1-intensity)*textureColor.x)];
-            bitmapData[nindex*4+1] = [KBImageUtils rgb:((intensity*outColor.g)+(1-intensity)*textureColor.y)];
-            bitmapData[nindex*4+2] = [KBImageUtils rgb:((intensity*outColor.b)+(1-intensity)*textureColor.z)];
-            bitmapData[nindex*4+3] = [KBImageUtils rgb:((intensity*outColor.a)+(1-intensity)*textureColor.w)];
+            GLKVector3 outColor = GLKMatrix4MultiplyVector3(colorMatrix, GLKVector3Make(r, g, b));
+
+            
+            int nr = [KBImageUtils rgb:(contrast*outColor.r)+(1-contrast)*r];
+            int ng = [KBImageUtils rgb:(contrast*outColor.g)+(1-contrast)*g];
+            int nb = [KBImageUtils rgb:(contrast*outColor.b)+(1-contrast)*b];
+            
+            bitmapData[nindex*4+0] = nr;
+            bitmapData[nindex*4+1] = ng;
+            bitmapData[nindex*4+2] = nb;
+            bitmapData[nindex*4+3] = 255;
         }
     }
     
@@ -73,7 +82,10 @@
 
 -(UIImage *)reGPUImageDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value{
     UIImage *inputImage = [UIImage imageNamed:@"03.jpeg"];
-    GPUImageSepiaFilter *disFilter = [[GPUImageSepiaFilter alloc] init];
+    GPUImageCrosshairGenerator *disFilter = [[GPUImageCrosshairGenerator alloc] init];
+    
+    disFilter.crosshairWidth = 5;
+    
     //设置要渲染的区域
 //    disFilter.saturation = value;
     [disFilter forceProcessingAtSize:inputImage.size];

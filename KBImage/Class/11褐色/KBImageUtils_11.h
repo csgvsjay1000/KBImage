@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KBImageDelegate.h"
 
-@interface KBImageUtils_11 : NSObject
-
-+(UIImage *)reDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value;
-
-+(UIImage *)reGPUImageDrawImage:(float *)ptrWidth ptrHeight:(float *)ptrHeight value:(float)value;
+@interface KBImageUtils_11 : NSObject<KBImageDelegate>
 
 @end

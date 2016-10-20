@@ -10,6 +10,6 @@
 
 @interface KBImageUtils : NSObject
 
-+(int)rgb:(float) value;
++(int)rgb:(int) value;
 
 @end
